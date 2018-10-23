@@ -1,0 +1,33 @@
+galaxy_info:
+  author: "Brad Stancel"
+  description: "Role for deleting DigitalOcean DNS entries."
+  company: "YourOnlineDept.com"
+
+  license: BSD
+
+  min_ansible_version: 2.4
+
+  github_branch: master
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+    - xenial
+  - name: Debian
+    versions:
+    - all
+  - name: RHEL
+    versions:
+    - all
+  - name: Fedora
+    versions:
+    - all
+
+  galaxy_tags: 
+    - DigitalOcean
+    - DNS
+    - automation
+
+
+dependencies: [].

@@ -1,0 +1,17 @@
+---
+# tasks file for remove-digitalocean-dns-entries
+  
+- name: "Removing DNS Entry for {{ remove_digitalocean_dns_entries_server_fqdn }}"
+  digital_ocean_domain: 
+    state: absent
+    name: "{{ remove_digitalocean_dns_entries_server_fqdn }}"
+    oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
+#    ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+
+- name: "Removing DNS Entry for www.{{ remove_digitalocean_dns_entries_server_fqdn }}"
+  digital_ocean_domain: 
+    state: absent
+    name: "www.{{ remove_digitalocean_dns_entries_server_fqdn }}"
+    oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
+#    ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+
