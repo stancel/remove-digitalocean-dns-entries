@@ -1,6 +1,6 @@
 galaxy_info:
   author: "Brad Stancel"
-  description: "Role for deleting DigitalOcean DNS entries."
+  description: "Role for deleting DigitalOcean DNS entries"
   company: "YourOnlineDept.com"
 
   license: BSD
@@ -30,4 +30,4 @@ galaxy_info:
     - automation
 
 
-dependencies: [].
+dependencies: []
