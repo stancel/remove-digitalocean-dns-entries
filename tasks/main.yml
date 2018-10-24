@@ -6,6 +6,7 @@
     state: absent
     name: "{{ remove_digitalocean_dns_entries_server_fqdn }}"
     oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
+  ignore_errors: yes
 #    ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
 
 - name: "Removing DNS Entry for www.{{ remove_digitalocean_dns_entries_server_fqdn }}"
@@ -13,5 +14,6 @@
     state: absent
     name: "www.{{ remove_digitalocean_dns_entries_server_fqdn }}"
     oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
+  ignore_errors: yes
 #    ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
 
