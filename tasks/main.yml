@@ -1,19 +1,44 @@
 ---
 # tasks file for remove-digitalocean-dns-entries
   
-- name: "Removing DNS Entry for {{ remove_digitalocean_dns_entries_server_fqdn }}"
-  digital_ocean_domain: 
-    state: absent
-    name: "{{ remove_digitalocean_dns_entries_server_fqdn }}"
-    oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
-  ignore_errors: yes
-#    ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+- name: "Only passing an individual fqdn to remove"
+  block:
+  
+    - name: "Removing DNS Entry for {{ remove_digitalocean_dns_entries_server_fqdn }}"
+      digital_ocean_domain: 
+        state: absent
+        name: "{{ remove_digitalocean_dns_entries_server_fqdn }}"
+        oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
+      ignore_errors: yes
+#     ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
 
-- name: "Removing DNS Entry for www.{{ remove_digitalocean_dns_entries_server_fqdn }}"
-  digital_ocean_domain: 
-    state: absent
-    name: "www.{{ remove_digitalocean_dns_entries_server_fqdn }}"
-    oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
-  ignore_errors: yes
-#    ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+    - name: "Removing DNS Entry for www.{{ remove_digitalocean_dns_entries_server_fqdn }}"
+      digital_ocean_domain: 
+        state: absent
+        name: "www.{{ remove_digitalocean_dns_entries_server_fqdn }}"
+        oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
+      ignore_errors: yes
+#     ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
 
+  when: not remove_digitalocean_dns_entries_use_list_of_server_fqdn
+  
+- name: "Passing a list of fqdn's to remove"
+  block:
+  
+    - name: "Removing DNS Entry for {{ item.url }}"
+      digital_ocean_domain: 
+        state: absent
+        name: "{{ item.url }}"
+        oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
+      with_items: '{{ remove_digitalocean_dns_entries_sites_to_remove }}'
+      ignore_errors: yes
+
+    - name: "Removing DNS Entry for www.{{ item.url }}"
+      digital_ocean_domain: 
+        state: absent
+        name: "www.{{ item.url }}"
+        oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
+      with_items: '{{ remove_digitalocean_dns_entries_sites_to_remove }}'
+      ignore_errors: yes
+
+  when: remove_digitalocean_dns_entries_use_list_of_server_fqdn

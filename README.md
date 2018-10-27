@@ -21,6 +21,23 @@ You must have your DigitalOcean API token saved into this environment variable
 	remove_digitalocean_dns_entries_do_token: "{{ lookup('env', 'DO_API_TOKEN') }}"
 ```
 
+Will you be passing a list of domains to remove? The default is false.
+```
+	remove_digitalocean_dns_entries_use_list_of_server_fqdn: false
+```
+
+List of Sites to Remove from DigitalOcean DNS Entries. Not needed unless the "remove_digitalocean_dns_entries_use_list_of_server_fqdn" variable is set to true. Default is false.
+```
+	remove_digitalocean_dns_entries_sites_to_remove:
+	  - {
+		  url: 'somesite.com'
+		}
+	  - {
+		  url: 'mysubdomain.somesite.com'
+		}
+```
+
+
 Dependencies
 ------------
 
