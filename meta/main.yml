@@ -14,10 +14,8 @@ galaxy_info:
     versions:
     - trusty
     - xenial
+    - bionic
   - name: Debian
-    versions:
-    - all
-  - name: RHEL
     versions:
     - all
   - name: Fedora
@@ -25,9 +23,8 @@ galaxy_info:
     - all
 
   galaxy_tags: 
-    - DigitalOcean
-    - DNS
+    - digitalocean
+    - dns
     - automation
-
 
 dependencies: []
