@@ -32,6 +32,7 @@
         oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
         ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
       with_items: '{{ remove_digitalocean_dns_entries_sites_to_remove }}'
+      when: item.register_dns
       ignore_errors: yes
   
     - name: "Removing DNS Entry for {{ item.url }}"
@@ -41,6 +42,7 @@
         oauth_token: "{{ remove_digitalocean_dns_entries_do_token }}"
         ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
       with_items: '{{ remove_digitalocean_dns_entries_sites_to_remove }}'
+      when: item.register_dns
       ignore_errors: yes
 
   when: remove_digitalocean_dns_entries_use_list_of_server_fqdn
